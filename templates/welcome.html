@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<style>
+    .col-lg-6 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+<!-- Main Sidebar Container -->
+
+<!-- Sidebar -->
+<!-- Sidebar user panel (optional) -->
+{% block sidebar_user_block %}
+{% endblock %}
+
+<!-- Sidebar Menu -->
+{% block sidebar_menu_block %}
+{% endblock %}
+<!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->
+</aside>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+
+<!-- /.content-header -->
+<!-- Content Header (Page header) -->
+{% block content_block %}
+<div class="content-wrapper" style="height = 100%;
+background-image:url({% static 'dist/img/background.JPG' %});
+background-repeat:no-repeat;
+background-attachment: fixed;
+background-clip: border-box;
+background-size: cover;
+">
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+
+    <!-- /.content -->
+    <!-- Main content -->
+    <div class="container-fluid">
+        <div style="height: 150px;"></div>
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        {% if login_error %}
+                        <div class="card-header">
+                            <p class="text-danger">{{ login_error }}</p>
+                        </div>
+                        {% endif %}
+                        <div class="card-body login-card-body">
+                            <p class="login-box-msg"><strong>Sign in to start your session</strong></p>
+                            <form id="login_form" action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" placeholder="Username" name="username">
+                                    <span class="fa fa-user form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="password" class="form-control" placeholder="Password" name="password">
+                                    <span class="fa fa-lock form-control-feedback"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="checkbox icheck">
+                                            <label>
+                                                <input type="checkbox"> Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-4">
+                                        <button type="submit" value="submit"
+                                                class="btn btn-block btn-outline-info btn-flat">Sign In
+                                        </button>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                            </form>
+                            <div class="social-auth-links text-center mb-3">
+                                <p>- OR -</p>
+                                <a href="#" class="btn btn-block btn-outline-info">
+                                    <i class="fa fa-facebook mr-2"></i> Sign in using Facebook
+                                </a>
+                                <a href="#" class="btn btn-block btn-outline-secondary">
+                                    <i class="fa fa-google-plus mr-2"></i> Sign in using Google+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="col-lg-6">-->
+                <!--<div class="card">-->
+                <!--<div class="card-body register-card-body">-->
+                <!--<p class="login-box-msg"><strong>Register a new membership</strong></p>-->
+
+                <!--<form action=".index.html" method="post">-->
+                <!--<div class="form-group has-feedback">-->
+                <!--<input type="text" class="form-control" placeholder="Full name">-->
+                <!--<span class="fa fa-user form-control-feedback"></span>-->
+                <!--</div>-->
+                <!--<div class="form-group has-feedback">-->
+                <!--<input type="email" class="form-control" placeholder="Email">-->
+                <!--<span class="fa fa-envelope form-control-feedback"></span>-->
+                <!--</div>-->
+                <!--<div class="form-group has-feedback">-->
+                <!--<input type="password" class="form-control" placeholder="Password">-->
+                <!--<span class="fa fa-lock form-control-feedback"></span>-->
+                <!--</div>-->
+                <!--<div class="form-group has-feedback">-->
+                <!--<input type="password" class="form-control" placeholder="Retype password">-->
+                <!--<span class="fa fa-lock form-control-feedback"></span>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                <!--<div class="col-8">-->
+                <!--<div class="checkbox icheck">-->
+                <!--<label>-->
+                <!--<input type="checkbox"> I agree to the <a href="#">terms</a>-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                <!--<div class="col-4">-->
+                <!--<button type="submit" class="btn btn-block btn-outline-info btn-flat">Register</button>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                <!--</div>-->
+                <!--</form>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.form-box &ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+<!-- /.content -->
+
+<!-- /.content-wrapper -->
+
+
+<!-- ./wrapper -->
+
+
+

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+{% block content_block %}
+<div class="content-wrapper" style="height: 100%">
+    <!-- Main content -->
+    <div class="container-fluid">
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">List of Students</h3>
+
+                            <!--                <div class="card-tools">-->
+                            <!--                  <div class="input-group input-group-sm" style="width: 150px;">-->
+                            <!--                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">-->
+
+                            <!--                    <div class="input-group-append">-->
+                            <!--                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
+                            <!--                    </div>-->
+                            <!--                  </div>-->
+                            <!--                </div>-->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Major</th>
+                                    <th>Email</th>
+                                </tr>
+                                {% for student in students %}
+                                <tr>
+                                    <td>{{ student.id }}</td>
+                                    <td>{{ student.detail.user.first_name }}</td>
+                                    <td>{{ student.detail.user.last_name }}</td>
+                                    <td>{{ student.major }}</td>
+                                    <td>{{ student.detail.user.email}}</td>
+<!--                                    <td><a href="' student.id%}">-->
+<!--                                        click to view-->
+<!--                                    </a>-->
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ./wrapper -->
+</div>
+{% endblock %}
+

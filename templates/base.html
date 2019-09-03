@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Nicework - Create your nice work and show it.</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' %}">
+    <style>
+
+        .attachment-block clearfix{
+            width: 1000px;
+            height: 750px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-body h3 {
+            color: #3c8dbc;
+        }
+
+        .textarea {
+
+
+            width: 400px;
+
+
+            min-height: 20px;
+
+
+            max-height: 300px;
+
+
+            _height: 120px;
+
+
+            margin-left: auto;
+
+
+            margin-right: auto;
+
+
+            padding: 3px;
+
+
+            outline: 0;
+
+
+            border: 1px solid #a0b3d6;
+
+
+            font-size: 12px;
+
+
+            line-height: 24px;
+
+
+            padding: 2px;
+
+
+            word-wrap: break-word;
+
+
+            overflow-x: hidden;
+
+
+            overflow-y: auto;
+
+
+            border-color: rgba(82,
+            168,
+            236,
+            0.8);
+
+
+            box-shadow: inset 0 1px 3px rgba(0,
+            0,
+            0,
+            0.1),
+            0 0 8px rgba(82,
+                    168,
+                    236,
+                    0.6);
+
+
+        }
+
+    </style>
+
+    <!--Special docs-->
+    {% block head_block %}
+    {% endblock %}
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url 'welcome' %}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+        <!--        &lt;!&ndash; SEARCH FORM &ndash;&gt;-->
+        <!--        <form class="form-inline ml-3">-->
+        <!--            <div class="input-group input-group-sm">-->
+        <!--                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">-->
+        <!--                <div class="input-group-append">-->
+        <!--                    <button class="btn btn-navbar" type="submit">-->
+        <!--                        <i class="fa fa-search"></i>-->
+        <!--                    </button>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </form>-->
+
+        <!-- Right navbar links -->
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <h5>Welcome,</h5>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fa fa-comments-o"></i>
+                    <span class="badge badge-danger navbar-badge"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <!--<div class="media">-->
+                        <!--<img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">-->
+                        <!--<div class="media-body">-->
+                        <!--<h3 class="dropdown-item-title">-->
+                        <!--Brad Diesel-->
+                        <!--<span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>-->
+                        <!--</h3>-->
+                        <!--<p class="text-sm">Call me whenever you can...</p>-->
+                        <!--<p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; Message End &ndash;&gt;-->
+                        <!--</a>-->
+                        <!--<div class="dropdown-divider"></div>-->
+                        <!--<a href="#" class="dropdown-item">-->
+                        <!--&lt;!&ndash; Message Start &ndash;&gt;-->
+                        <!--<div class="media">-->
+                        <!--<img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">-->
+                        <!--<div class="media-body">-->
+                        <!--<h3 class="dropdown-item-title">-->
+                        <!--John Pierce-->
+                        <!--<span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>-->
+                        <!--</h3>-->
+                        <!--<p class="text-sm">I got your message bro</p>-->
+                        <!--<p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; Message End &ndash;&gt;-->
+                        <!--</a>-->
+                        <!--<div class="dropdown-divider"></div>-->
+                        <!--<a href="#" class="dropdown-item">-->
+                        <!--&lt;!&ndash; Message Start &ndash;&gt;-->
+                        <!--<div class="media">-->
+                        <!--<img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">-->
+                        <!--<div class="media-body">-->
+                        <!--<h3 class="dropdown-item-title">-->
+                        <!--Nora Silvester-->
+                        <!--<span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>-->
+                        <!--</h3>-->
+                        <!--<p class="text-sm">The subject goes here</p>-->
+                        <!--<p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; Message End &ndash;&gt;-->
+                        <!--</a>-->
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        {% endif %}
+
+        <!--<ul class="navbar-nav ml-auto">-->
+        <!--&lt;!&ndash; Messages Dropdown Menu &ndash;&gt;-->
+        <!--<li class="nav-item dropdown">-->
+        <!--<a class="nav-link" data-toggle="dropdown" href="#">-->
+        <!--<i class="fa fa-comments-o"></i>-->
+        <!--<span class="badge badge-danger navbar-badge">3</span>-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">-->
+        <!--<a href="#" class="dropdown-item">-->
+        <!--&lt;!&ndash; Message Start &ndash;&gt;-->
+        <!--<div class="media">-->
+        <!--<img src="{% static 'dist/img/user1-128x128.jpg' %}" alt="User Avatar" class="img-size-50 mr-3 img-circle">-->
+        <!--<div class="media-body">-->
+        <!--<h3 class="dropdown-item-title">-->
+        <!--Brad Diesel-->
+        <!--<span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>-->
+        <!--</h3>-->
+        <!--<p class="text-sm">Call me whenever you can...</p>-->
+        <!--<p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; Message End &ndash;&gt;-->
+        <!--</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item">-->
+        <!--&lt;!&ndash; Message Start &ndash;&gt;-->
+        <!--<div class="media">-->
+        <!--<img src="{% static 'dist/img/user8-128x128.jpg' %}" alt="User Avatar" class="img-size-50 img-circle mr-3">-->
+        <!--<div class="media-body">-->
+        <!--<h3 class="dropdown-item-title">-->
+        <!--John Pierce-->
+        <!--<span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>-->
+        <!--</h3>-->
+        <!--<p class="text-sm">I got your message bro</p>-->
+        <!--<p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; Message End &ndash;&gt;-->
+        <!--</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item">-->
+        <!--&lt;!&ndash; Message Start &ndash;&gt;-->
+        <!--<div class="media">-->
+        <!--<img src="{% static 'dist/img/user3-128x128.jpg' %}" alt="User Avatar" class="img-size-50 img-circle mr-3">-->
+        <!--<div class="media-body">-->
+        <!--<h3 class="dropdown-item-title">-->
+        <!--Nora Silvester-->
+        <!--<span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>-->
+        <!--</h3>-->
+        <!--<p class="text-sm">The subject goes here</p>-->
+        <!--<p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; Message End &ndash;&gt;-->
+        <!--</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item dropdown-footer">See All Messages</a>-->
+        <!--</div>-->
+        <!--</li>-->
+        <!--&lt;!&ndash; Notifications Dropdown Menu &ndash;&gt;-->
+        <!--<li class="nav-item dropdown">-->
+        <!--<a class="nav-link" data-toggle="dropdown" href="#">-->
+        <!--<i class="fa fa-bell-o"></i>-->
+        <!--<span class="badge badge-warning navbar-badge">15</span>-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">-->
+        <!--<span class="dropdown-header">15 Notifications</span>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item">-->
+        <!--<i class="fa fa-envelope mr-2"></i> 4 new messages-->
+        <!--<span class="float-right text-muted text-sm">3 mins</span>-->
+        <!--</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item">-->
+        <!--<i class="fa fa-users mr-2"></i> 8 friend requests-->
+        <!--<span class="float-right text-muted text-sm">12 hours</span>-->
+        <!--</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item">-->
+        <!--<i class="fa fa-file mr-2"></i> 3 new reports-->
+        <!--<span class="float-right text-muted text-sm">2 days</span>-->
+        <!--</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>-->
+        <!--</div>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+        <!--<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i-->
+        <!--class="fa fa-th-large"></i></a>-->
+        <!--</li>-->
+        <!--</ul>-->
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-light-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="{% url 'welcome' %}" class="brand-link">
+            <img src="{% static 'dist/img/Logo.png' %}" alt="Logo" height="75" width="100"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light"><h4 style="display: inline">Nicework</h4></span>
+        </a>
+
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            {% if user.is_authenticated %}
+            <!-- Sidebar user panel -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="justify-content:center;
+align-items:center;_">
+                <div class="image">
+                    <img src="{{ user_profile.avatar.url }}" class="img-circle elevation-2"
+                         alt="User Avatar">
+                </div>
+                <div class="info">
+                    <a href="{% url 'edit_profile' %}" class="d-block">{{ user.get_full_name }}</a>
+                </div>
+            </div>
+            {% endif %}
+            {% if student %}
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="{% url 'index' %}" class="nav-link active">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="" class="nav-link active">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                Activities
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if activities %}
+                            {% for activity in activities %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'show_activity' activity.id %}">
+
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>{{ activity.topic }}</p>
+                                </a>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="nav-item">>No activities.</li>
+                            {% endif %}
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Journals
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if journals %}
+                            {% for journal in journals %}
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-book"></i>
+                                    <p>
+                                        {{ journal.title }}
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    {% if entries %}
+                                    {% for entry in entries %}
+                                    {% if entry.journal.id == journal.id %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'show_entry' entry.id %}" class="nav-link">
+                                            <i class="nav-icon fa fa-file"></i>
+                                            <p>{{ entry.title }}</p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                    <li class="nav-item">>No entries.</li>
+                                    {% endif %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'add_entry' journal.id %}" class="nav-link">
+                                            <i class="fa fa-edit"></i>
+                                            <p>Add a new Entry</p>
+                                        </a>
+                                        <a href="{% url 'delete_journal' journal.id %}" class="nav-link">
+                                            <i class="fa fa-minus"></i>
+                                            <p>Click to delete the journal.</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="nav-item">>No journals.</li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="{% url 'add_journal' %}" class="nav-link">
+                                    <i class="fa fa-edit"></i>
+                                    <p>Add a new Journal</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="{% url 'view_classmates' %}" class="nav-link active">
+                            <i class="nav-icon fa fa-table"></i>
+                            <p>
+                                View Classmates
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            {% elif lecturer %}
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="{% url 'index' %}" class="nav-link active">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="" class="nav-link active">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                Activities
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if activities %}
+                            {% for activity in activities %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'show_activity' activity.id %}">
+
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>{{ activity.topic }}</p>
+                                </a>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="nav-item">>No activities.</li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="{% url 'add_activity' %}" class="nav-link">
+                                    <i class="fa fa-edit"></i>
+                                    <p>Add a new Activity</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Evaluations
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-book"></i>
+                                    <p>
+                                        Entries to be evaluated.
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    {% if entries %}
+                                    {% for entry in entries %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'show_entry' entry.id %}" class="nav-link">
+                                            <i class="nav-icon fa fa-file"></i>
+                                            <p>{{ entry.title }}</p>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    {% else %}
+                                    <li class="nav-item"><p class="text-info">No entries to be evaluated.</p></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="{% url 'view_classmates' %}" class="nav-link active">
+                            <i class="nav-icon fa fa-table"></i>
+                            <p>
+                                View Classmates
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            {% elif mentor%}
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="{% url 'index' %}" class="nav-link active">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="" class="nav-link active">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                Activities
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if activities %}
+                            {% for activity in activities %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'show_activity' activity.id %}">
+
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>{{ activity.topic }}</p>
+                                </a>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="nav-item">>No activities.</li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="{% url 'add_activity' %}" class="nav-link">
+                                    <i class="fa fa-edit"></i>
+                                    <p>Add a new Activity</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Evaluations
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-book"></i>
+                                    <p>
+                                        Entries to be evaluated.
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    {% if entries %}
+                                    {% for entry in entries %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'show_entry' entry.id %}" class="nav-link">
+                                            <i class="nav-icon fa fa-file"></i>
+                                            <p>{{ entry.title }}</p>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    {% else %}
+                                    <li class="nav-item"><p class="text-info">No entries to be evaluated.</p></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="{% url 'view_classmates' %}" class="nav-link active">
+                            <i class="nav-icon fa fa-table"></i>
+                            <p>
+                                View Classmates
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            {% else %}
+            <div class="callout callout-info">
+                <i class="fa fa-info"></i> <h5 style="display: inline">Welcome to <b>Nicework:</b></h5><br><br>
+                <p> Nicework is an application for Software Engineering Work-based Learning students to keep journals on
+                    which the
+                    mentors and lecturers can make evaluation to determine students' performance according.</p>
+                <p> Please enjoy building your own niceworks and sharing them with it.</p>
+            </div>
+            {% endif%}
+            {% block sidebar_menu_block %}
+            {% endblock %}
+
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+
+    <!-- Content Header (Page header) -->
+    {% block content_block %}
+    {% endblock %}
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+
+    <!-- /.content -->
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <!--<aside class="control-sidebar control-sidebar-dark">-->
+    <!--&lt;!&ndash; Control sidebar content goes here &ndash;&gt;-->
+    <!--<div class="p-3">-->
+    <!--<h5>TitleTitleTitleTitleTitleTitleTitleTitle</h5>-->
+    <!--<p>STitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle</p>-->
+    <!--</div>-->
+    <!--</aside>-->
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            Nicework
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; Nicework</strong> All rights reserved.
+    </footer>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    {% block scripts_block %}
+    {% endblock %}
+    <!-- jQuery -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js' %}"></script>
+    <!--    &lt;!&ndash; Slimscroll &ndash;&gt;-->
+    <!--    <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>-->
+    <!--    &lt;!&ndash; FastClick &ndash;&gt;-->
+    <!--    <script src="{% static 'plugins/fastclick/fastclick.js' %}"></script>-->
+    <!--    &lt;!&ndash; SparkLine &ndash;&gt;-->
+    <!--    <script src="{% static 'plugins/sparkline/jquery.sparkline.min.js' %}"></script>-->
+    <!--    &lt;!&ndash; jVectorMap &ndash;&gt;-->
+    <!--    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>-->
+    <!--    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>-->
+    <!--    &lt;!&ndash; SlimScroll 1.3.0 &ndash;&gt;-->
+    <!--    <script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>-->
+    <!--    &lt;!&ndash; ChartJS 1.0.2 &ndash;&gt;-->
+    <!--    <script src="{% static 'plugins/chartjs-old/Chart.min.js' %}"></script>-->
+    <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+    <!--    <script src="../dist/js/demo.js"></script>-->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+{% block content_block %}
+<div class="content-wrapper" style="height: 100%">
+    <!-- Main content -->
+    <div class="container-fluid">
+        <section class="content">
+            <div class="row">
+                <embed src="{% static 'dist\files\Competencies of Software Engineers.pdf' %}" width="800px" height="2100px" />
+            </div>
+        </section>
+    </div>
+    <!-- ./wrapper -->
+</div>
+{% endblock %}
+

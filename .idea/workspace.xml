@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="504610a5-b412-4e5c-a8b8-3c6781745234" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1PCHmPzNrJpwyWPt9RzlwsI7vvC" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator.WIN-KCG2CVA15BK\OneDrive\桌面\学习\MSc Project\MyProject\nicework\project_nicework\templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\33101\OneDrive\桌面\学习\MSc Project\MyProject\nicework\project_nicework\templates" />
+      <recent name="C:\Users\33101\OneDrive\桌面\学习\MSc Project\MyProject\nicework\project_nicework\project_nicework" />
+      <recent name="C:\Users\33101\OneDrive\桌面\学习\MSc Project\MyProject\nicework\project_nicework" />
+      <recent name="C:\Users\Administrator.WIN-KCG2CVA15BK\OneDrive\桌面\学习\MSc Project\MyProject\nicework\project_nicework\templates" />
+      <recent name="C:\Users\Administrator.WIN-KCG2CVA15BK\OneDrive\桌面\学习\MSc Project\MyProject\nicework\project_nicework\templates\nicework" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="504610a5-b412-4e5c-a8b8-3c6781745234" name="Default Changelist" comment="" />
+      <created>1564043061612</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564043061612</updated>
+      <workItem from="1565371337723" duration="445000" />
+      <workItem from="1565371871500" duration="27605000" />
+      <workItem from="1566279445560" duration="10536000" />
+      <workItem from="1566655628524" duration="64488000" />
+      <workItem from="1566805358130" duration="75144000" />
+      <workItem from="1567446201454" duration="5543000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nicework/views.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

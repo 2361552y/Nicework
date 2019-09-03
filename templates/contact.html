@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<style>
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+<!-- Main Sidebar Container -->
+
+<!-- Sidebar -->
+<!-- Sidebar user panel (optional) -->
+{% block sidebar_user_block %}
+{% endblock %}
+
+<!-- Sidebar Menu -->
+{% block sidebar_menu_block %}
+{% endblock %}
+<!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->
+</aside>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+
+<!-- /.content-header -->
+<!-- Content Header (Page header) -->
+{% block content_block %}
+<div class="content-wrapper" style="height = 100%;
+background-image:url({% static 'dist/img/background.JPG' %});
+background-repeat:no-repeat;
+background-attachment: fixed;
+background-clip: border-box;
+background-size: cover;
+">
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+
+    <!-- /.content -->
+    <!-- Main content -->
+    <div class="container-fluid">
+        <div style="height: 150px;"></div>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="icon fa fa-info"></i>
+                                Declaration
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <p class="text-success">First of all, this web app is built by a master student of UofG named Yibo Yang.</p>
+
+                            <p class="text-info">If you have any problem, please feel free to contact me through the contact info below.</p>
+
+                            <h1 class="lead">Contact:</h1>
+
+                            <p class="text-primary">Email address: 2361552y@student.gla.ac.uk</p>
+
+                            <p class="text-primary">Mobile number: +447999018544</p>
+
+                            <p class="text-warning">Thanks!</p>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+<!-- /.content -->
+
+<!-- /.content-wrapper -->
+
+
+<!-- ./wrapper -->
+
+
+{% block scripts_block %}
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{% static 'dist/js/demo.js' %}"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- SparkLine -->
+<script src="{% static 'plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+<!-- jVectorMap -->
+<script src="{% static 'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="{% static 'plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<!-- ChartJS 1.0.2 -->
+<script src="{% static 'plugins/chartjs-old/Chart.min.js' %}"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="{% static 'dist/js/pages/dashboard2.js' %}"></script>
+{% endblock %}
+

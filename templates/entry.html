@@ -1,0 +1,389 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+<!--{% block head_block %}-->
+<!--<style>-->
+
+<!--    .row {-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--    }-->
+
+<!--    .card-body h3 {-->
+<!--        color: #3c8dbc;-->
+<!--    }-->
+<!--</style>-->
+<!--{% endblock %}-->
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+{% block content_block %}
+<div class="content-wrapper" style="height: 100%">
+    <!-- Main content -->
+    <div class="container-fluid">
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <i class="nav-icon fa fa-file"></i>
+                            <p style="display: inline"></p>
+                            <h3 class="card-title" style="display: inline">{{ entry.title }}</h3>
+                            {% if success_log %}
+                            <h3 class="text-success"> {{ success_log }}</h3>
+                            {% endif%}
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h3>Journal Title:</h3>
+                                <label>{{ entry.journal.title }}</label>
+                                <br>
+                                <h3>Last Modification Time: </h3>
+                                <label>{{ entry.lastModifyTime }}</label>
+                                <br>
+                                <h3>Creation Time: </h3>
+                                <label>{{ entry.createTime }}</label>
+                                <br>
+                                {% if entry.isPlanOrReflection == True %}
+                                <h3>Entry of Plan</h3>
+                                {% else %}
+                                <h3>Entry of Reflection</h3>
+                                {% endif %}
+                                <br>
+                                <div class="card-body">
+                                    <h3>Content:</h3>
+                                    <!-- post text -->
+                                    <p>
+                                        {{ entry.content }}
+                                    </p>
+                                    <!-- Attachment -->
+                                    {% if entry_files.attachedImage %}
+                                    <div class="attachment-block clearfix">
+                                        <label>Code Segments:</label>
+                                        <img src="{{ entry_files.attachedImage.url }}" alt="attaches"
+                                             style="max-width: 100%; max-height: 100%;">
+                                    </div>
+                                    {% endif %}
+                                    <!--                                                                            <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">-->
+
+                                    <!--                                                                            <div class="attachment-pushed">-->
+                                    <!--                                                                                <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum-->
+                                    <!--                                                                                    text generator</a></h4>-->
+
+                                    <!--                                                                                <div class="attachment-text">-->
+                                    <!--                                                                                    Description about the attachment can be placed here.-->
+                                    <!--                                                                                    Lorem Ipsum is simply dummy text of the printing and typesetting-->
+                                    <!--                                                                                    industry... <a href="#">more</a>-->
+                                    <!--                                                                                </div>-->
+                                    <!--                                                                                &lt;!&ndash; /.attachment-text &ndash;&gt;-->
+                                    <!--                                                                            </div>-->
+                                    <!--&lt;!&ndash;                                     /.attachment-pushed &ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                     /.attachment-block &ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;                                     Social sharing buttons &ndash;&gt;-->
+
+                                    <!--                                                                        <button type="button" class="btn btn-default btn-sm"><i-->
+                                    <!--                                                                                class="fa fa-thumbs-o-up"></i> Like-->
+                                    <!--                                                                        </button>-->
+                                    <!--                                                                        <span class="float-right text-muted">45 likes - 2 comments</span>-->
+                                    <h3>Likes: </h3>
+                                    <i class="fa fa-thumbs-o-up"></i>
+                                    <label>{{ entry.likes }}</label>
+                                    <br>
+                                </div>
+                                {% if comments %}
+                                <div class="card-footer card-comments">
+                                    <h3>Comments:</h3>
+                                    {% for comment in comments %}
+                                    <div class="card-comment">
+
+                                        <div class="comment-text">
+                                            <span class="username">
+                                                {{ comment.user.get_full_name }} :
+                                            <span class="text-muted float-right">{{ comment.date }}</span>
+                                            </span>
+                                            {{ comment.content }}
+                                            {% if comment.competencies %}
+                                            <h6>Competencies:</h6>
+                                            {{ comment.competencies }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!-- /.comment-text -->
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section>
+        <div class="row">
+            {% if entry.mentorPass == None %}
+            <div class="col-md-9">
+                <div class="card bg-warning-gradient">
+                    <div class="card-header">
+                        <h3 class="card-title">Passing Status: <b>Waiting</b></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        Waiting for mentor checking.
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            {% if student %}
+            <a href="{% url 'edit_entry' entry.id %}">
+                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+                    Edit
+                </button>
+            </a>
+            {% elif mentor %}
+            <a href="{% url 'evaluate_entry' entry.id %}">
+                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+                    Evaluate
+                </button>
+            </a>
+            {% endif %}
+            {% elif entry.mentorPass == False %}
+            <div class="col-md-9">
+                <div class="card bg-danger-gradient">
+                    <div class="card-header">
+                        <h3 class="card-title">Passing Status: <b>Failed</b></h3>
+                    </div>
+                    <div class="card-body">
+                        Failed at mentor.<br>
+                        Please edit and resubmit!
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            {% if student %}
+            <a href="{% url 'edit_entry' entry.id %}">
+                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+                    Edit
+                </button>
+            </a>
+            {% endif %}
+            {% else %}
+            {% if entry.lecturerPass == None %}
+            <div class="col-md-9">
+                <div class="card bg-warning-gradient">
+                    <div class="card-header">
+                        <h3 class="card-title">Passing Status: <b>Waiting</b></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        You have passed at mentor!<br>
+                        Waiting for lecturer checking.
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                {% if lecturer %}
+                <a href="{% url 'evaluate_entry' entry.id %}">
+                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+                        Evaluate
+                    </button>
+                </a>
+                {% endif %}
+                <!-- /.card -->
+            </div>
+            {% elif entry.lecturerPass == False %}
+            <div class="col-md-9">
+                <div class="card bg-danger-gradient">
+                    <div class="card-header">
+                        <h3 class="card-title">Passing Status: <b>Failed</b></h3>
+                    </div>
+                    <div class="card-body">
+                        Failed at lecturer.<br>
+                        Please edit and resubmit!
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            {% if student %}
+            <a href="{% url 'edit_entry' entry.id %}">
+                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+                    Edit
+                </button>
+            </a>
+            {% endif %}
+            {% else %}
+            <div class="col-md-9">
+                <div class="card bg-success-gradient">
+                    <div class="card-header">
+                        <h3 class="card-title">Passing Status: <b>Passed</b></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        This entry has passed.<br>
+                        Congratulations!
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            {% endif %}
+            {% endif %}
+
+            <!--<div class="col-lg-6">-->
+            <!--<div class="card">-->
+            <!--<div class="card-body register-card-body">-->
+            <!--<p class="login-box-msg"><strong>Register a new membership</strong></p>-->
+
+            <!--<form action=".index.html" method="post">-->
+            <!--<div class="form-group has-feedback">-->
+            <!--<input type="text" class="form-control" placeholder="Full name">-->
+            <!--<span class="fa fa-user form-control-feedback"></span>-->
+            <!--</div>-->
+            <!--<div class="form-group has-feedback">-->
+            <!--<input type="email" class="form-control" placeholder="Email">-->
+            <!--<span class="fa fa-envelope form-control-feedback"></span>-->
+            <!--</div>-->
+            <!--<div class="form-group has-feedback">-->
+            <!--<input type="password" class="form-control" placeholder="Password">-->
+            <!--<span class="fa fa-lock form-control-feedback"></span>-->
+            <!--</div>-->
+            <!--<div class="form-group has-feedback">-->
+            <!--<input type="password" class="form-control" placeholder="Retype password">-->
+            <!--<span class="fa fa-lock form-control-feedback"></span>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="col-8">-->
+            <!--<div class="checkbox icheck">-->
+            <!--<label>-->
+            <!--<input type="checkbox"> I agree to the <a href="#">terms</a>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; /.col &ndash;&gt;-->
+            <!--<div class="col-4">-->
+            <!--<button type="submit" class="btn btn-block btn-outline-info btn-flat">Register</button>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; /.col &ndash;&gt;-->
+            <!--</div>-->
+            <!--</form>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; /.form-box &ndash;&gt;-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </section>
+    <!-- ./wrapper -->
+</div>
+<div class="content-wrapper" style="height: 100%">
+    {% if folios %}
+    <div><h1 class="text-info">There are {{ latest }} history:</h1></div>
+    {% endif %}
+    {% for key,folio in folios.items %}
+    <!-- Main content -->
+    <div class="container-fluid">
+        <section class="content">
+            {% if folio.version == latest %}
+            <div><h1 class="text-info">The original version:</h1></div>
+            {% else %}
+            <div><h4 class="text-dark">A history version:</h4></div>
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <i class="nav-icon fa fa-file"></i>
+                            <p style="display: inline"></p>
+                            <h3 class="card-title" style="display: inline">{{ folio.entry.title }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h3>Journal Title:</h3>
+                                <label>{{ folio.entry.journal.title }}</label>
+                                <br>
+                                <h3>Last Modification Time: </h3>
+                                <label>{{ folio.entry.lastModifyTime }}</label>
+                                <br>
+                                <h3>Creation Time: </h3>
+                                <label>{{ folio.entry.createTime }}</label>
+                                <br>
+                                <div class="card-body">
+                                    <!-- post text -->
+                                    <p>
+                                        {{ folio.entry.content }}
+                                    </p>
+                                    <!-- Attachment -->
+                                    {% if folio.entry_files.attachedImage %}
+                                    <div class="attachment-block clearfix">
+                                        <label>Code Segments:</label>
+                                        <img src="{{ folio.entry_files.attachedImage.url }}" alt="attaches"
+                                             style="max-height: 100%; max-width: 100%;">
+                                    </div>
+                                    {% endif %}
+                                    {% if folio.comments %}
+                                    {% for comment in folio.comments %}
+                                    <div class="card-comment">
+                                        <!--                                        <img class="img-circle img-sm" src="{% url 'get_avatar' comment.user.id %}"
+                                                                                     alt="User Image">-->
+
+                                        <div class="comment-text">
+                                            <span class="username">
+                                                {{ comment.user.get_full_name }}
+                                            </span>
+                                            <span class="text-muted float-right">{{ comment.date }}</span>
+                                            </span><!-- /.username -->
+                                            {{ comment.content }}
+                                            {% if comment.competencies %}
+                                            <h6>Competencies:</h6>
+                                            {{ comment.competencies }}
+                                            {% endif %}
+                                        </div>
+                                        <!-- /.comment-text -->
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                    <!--                                                                            <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">-->
+
+                                    <!--                                                                            <div class="attachment-pushed">-->
+                                    <!--                                                                                <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum-->
+                                    <!--                                                                                    text generator</a></h4>-->
+
+                                    <!--                                                                                <div class="attachment-text">-->
+                                    <!--                                                                                    Description about the attachment can be placed here.-->
+                                    <!--                                                                                    Lorem Ipsum is simply dummy text of the printing and typesetting-->
+                                    <!--                                                                                    industry... <a href="#">more</a>-->
+                                    <!--                                                                                </div>-->
+                                    <!--                                                                                &lt;!&ndash; /.attachment-text &ndash;&gt;-->
+                                    <!--                                                                            </div>-->
+                                    <!--&lt;!&ndash;                                     /.attachment-pushed &ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                     /.attachment-block &ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;                                     Social sharing buttons &ndash;&gt;-->
+
+                                    <!--                                                                        <button type="button" class="btn btn-default btn-sm"><i-->
+                                    <!--                                                                                class="fa fa-thumbs-o-up"></i> Like-->
+                                    <!--                                                                        </button>-->
+                                    <!--                                                                        <span class="float-right text-muted">45 likes - 2 comments</span>-->
+                                </div>
+                                <h4>Likes: </h4>
+                                <i class="fa fa-thumbs-o-up"></i>
+                                <label>{{ folio.entry.likes }}</label>
+                                <br>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ./wrapper -->
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts_block %}
+{% endblock %}

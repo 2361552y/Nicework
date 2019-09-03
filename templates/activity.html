@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<!--<style>-->
+<!--    .row {-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--    }-->
+
+<!--    .card-body h3 {-->
+<!--        color: #3c8dbc;-->
+<!--    }-->
+<!--</style>-->
+{% endblock %}
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+{% block content_block %}
+<div class="content-wrapper" style="height: 100%">
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+
+    <!-- /.content -->
+    <!-- Main content -->
+    <div class="container-fluid">
+<!--        <div style="height: 150px;"></div>-->
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <i class="fa fa-circle-o nav-icon"><p style="display: inline"></p>
+                                <h3 class="card-title" style="display: inline">Activity</h3></i>
+                            {% if success_log %}
+                            <h3 class="text-success"> {{ success_log }}</h3>
+                            {% endif%}
+                            {% if mentor or lecturer %}
+                            <div class="card-tools">
+                                <a href="{% url 'delete_activity' activity.id %}">
+                                    <button type="button" class="btn btn-tool">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h3>Topic: </h3>
+                                <label>{{ activity.topic }}</label>
+                                <br>
+                                <h3>Date: </h3>
+                                <label>{{ activity.date }}</label>
+                                <br>
+                                <h3>Address: </h3>
+                                <label>{{ activity.address }}</label>
+                                <br>
+                                <h3>Description: </h3>
+                                <br>
+                                <label>{{ activity.description }}</label>
+                                <br>
+                                <h3>Holder: </h3>
+                                <label>{{ activity.holder.title }} {{ activity.holder.detail.user.get_full_name }}</label>
+                                <p class="text-info">Company: {{ activity.holder.company }}</p>
+                                <p class="text-info">Email: {{ activity.holder.detail.user.email }}</p>
+                                <br>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ./wrapper -->
+</div>
+{% endblock %}
+
